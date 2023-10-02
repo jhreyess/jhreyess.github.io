@@ -1,0 +1,64 @@
+---
+import Sun from './icons/Sun.astro';
+import Moon from './icons/Moon.astro';
+---
+
+<button type="button" id="theme-toggle" title="theme toggler">
+    <Moon />
+    <Sun />
+</button>
+
+<style>
+    #theme-toggle {
+        border: none;
+        background: none;
+        border-radius: 50px;
+        padding: 0.75em;
+        transition: 0.5s all ease;
+        transform-origin: 100% 100%;
+        display: inline-block;
+        vertical-align: middle;
+    }
+
+    #theme-toggle:active {
+        background: var(--colorTabs);
+    }
+</style>
+
+<script>
+    const toggle = document.getElementById("theme-toggle");
+    const sun = document.getElementById("sun-icon");
+    const moon = document.getElementById("moon-icon");
+    sun !== null ? sun.style.display = 'none' : null;
+    moon !== null ? moon.style.display = 'none' : null;
+
+    var storedTheme = localStorage.getItem('theme') || (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+    if (storedTheme) {
+        if (storedTheme === 'dark') {
+            replaceIcon(moon, sun);
+        }else{
+            replaceIcon(sun, moon);
+        }
+        document.documentElement.setAttribute('data-theme', storedTheme)
+    }
+
+    function replaceIcon(hide, show) {
+        hide.style.display = 'none';
+        show.style.display = 'block';
+    }
+
+    toggle !== null ? toggle.onclick = function() {
+        const currentTheme = document.documentElement.getAttribute("data-theme");
+        var targetTheme = "light";
+    
+        if (currentTheme === "light") {
+            targetTheme = "dark";
+            replaceIcon(moon, sun);
+        }else{
+            replaceIcon(sun, moon);
+        }
+
+        document.documentElement.setAttribute('data-theme', targetTheme)
+        localStorage.setItem('theme', targetTheme);
+    } : null;
+</script>

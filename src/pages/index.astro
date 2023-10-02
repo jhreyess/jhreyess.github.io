@@ -1,0 +1,145 @@
+---
+import MainLayout from '../layouts/MainLayout.astro';
+import HeroLayout from '../layouts/HeroLayout.astro';
+import AboutLayout from '../layouts/AboutLayout.astro';
+import ExperienceLayout from '../layouts/ExperienceLayout.astro';
+import PortfolioLayout from '../layouts/PortfolioLayout.astro';
+import ContactLayout from '../layouts/ContactLayout.astro';
+import Footer from '../components/Footer.astro';
+
+import Showcase from "../components/Showcase.astro";
+import Project from "../components/Project.astro";
+import Job from "../components/Job.astro";
+
+import ShowcaseNutridesk from '../assets/nutridesk.webp'
+import ShowcasePhilearn from '../assets/philearn.webp';
+import ShowcaseSoccernet from '../assets/soccernet.webp'
+import ShowcaseQuoteIt from '../assets/quote-it-server.webp';
+import ShowcaseQuoteItApp from '../assets/quote-it-logo.webp';
+import ShowcaseVaccination from '../assets/vaccination.webp';
+import ShowcaseSofia from '../assets/sofiachatbot.webp';
+import ShowcaseDefault from '../assets/default.webp';
+---
+<MainLayout title="@Jhreyess | Site"
+    description="Josué Reyes is a Software Engineer who likes to learn new technologies and use them to create things that help companies and people.">
+
+    <HeroLayout 
+        name="JOSUÉ REYES" 
+        job="Software Engineer" 
+        social_linkedin='https://www.linkedin.com/in/jhreyess/'
+        social_github='https://www.github.com/jhreyess'
+        social_instagram='https://www.instagram.com/josue.hreyess'
+    />
+
+    <main>
+        <AboutLayout skills={['Kotlin', 'React', 'Node.js', 'Elixir', 'Python', 'Compose']}>
+            Looking to join the professional area to expand my knowledge regarding the software
+            industry and contribute to its development, providing innovative solutions and 
+            satisfying needs, using code efficiently.
+        </AboutLayout>
+        
+    <ExperienceLayout>
+            <Job 
+                position="Research Assistant" 
+                company="UANL"
+                start="July 2023" end="August 2023"
+                >
+                - Collaborated on a research project exploring parallel 
+                programming techniques in the context of search algorithms.
+                <br>
+                - Provided alternatives to diversify search algorithms,
+                enhancing its efficiency and effectiveness.
+            </Job>
+            <!-- <Job position="System Analist" start="2022" end="2023">
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. 
+                Dolorem ea sunt numquam velit aliquam qui sint veritatis iste tempora 
+                quae provident hic culpa reiciendis, ullam saepe sequi repudiandae natus nihil.
+            </Job>
+            <Job position="Network Engineer" start="2021" end="2022">
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. 
+                Nemo magni asperiores dolor eligendi vero tempora, fugiat amet voluptates 
+                officiis neque consequuntur, natus sed accusantium praesentium earum, 
+                dolorum hic culpa distinctio.
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. 
+                Nemo magni asperiores dolor eligendi vero tempora, fugiat amet voluptates 
+                officiis neque consequuntur, natus sed accusantium praesentium earum, 
+                dolorum hic culpa distinctio.
+            </Job> -->
+        </ExperienceLayout>
+    
+        <PortfolioLayout 
+            tabs={[
+                { key: "Tab1", value: "Backend", checked: true },
+                { key: "Tab2", value: "Frontend" },
+                { key: "Tab3", value: "Mobile" },
+                { key: "Tab4", value: "AI/ML" },
+            ]}>
+
+            <Showcase forGroup="Tab1" isDefault>
+                <Project 
+                    title="Quote It! - Server Side" 
+                    image={ShowcaseQuoteIt} 
+                    source="https://github.com/jhreyess/quote-it-server">
+                    A Node.js server with PostgreSQL for the Quote It! app, enabling efficient handling of user-generated data and a smooth app experience.
+                </Project>
+            </Showcase>
+
+            <Showcase forGroup="Tab2">
+                <Project 
+                    title="Soccernet" 
+                    image={ShowcaseSoccernet} 
+                    source="https://github.com/jhreyess/soccernet">
+                    A user-friendly web app prototype created with React and React-router v6, 
+                    providing soccer enthusiasts quick access to team details, player stats, and match schedules. 
+                </Project>
+                <Project 
+                    title="Vaccination Campaign" 
+                    image={ShowcaseVaccination} 
+                    source="https://github.com/jhreyess/vaccination-campaign-concept"
+                    deployment="https://jhreyess.github.io/vaccination-campaign-concept/">
+                    A UI clone of a vaccination campaign design concept by @AdhiariSubekti on Dribble
+                </Project>
+            </Showcase>
+
+            <Showcase forGroup="Tab3">
+                <Project 
+                    title="Quote It!" 
+                    image={ShowcaseQuoteItApp} 
+                    source="https://github.com/jhreyess/quote-it">
+                    Mobile social network app developed in Android Native that allows users to create, share and publish famous or original quotes.
+                </Project>
+                <Project 
+                    title="Nutridesk"
+                    image={ShowcaseNutridesk} 
+                    source="https://github.com/jhreyess/nutridesk-app">
+                    Nutritional consulting and patient management app developed for Android using View and Firebase technologies.
+                </Project>
+                <Project 
+                    title="Philearn" 
+                    image={ShowcasePhilearn}>
+                    <strong>In progress:</strong> Android Compose educational content app with modern UI for seamless learning experience. 
+                    Updates to follow.
+                </Project>
+            </Showcase>
+
+            <Showcase forGroup="Tab4">
+                <Project 
+                    title="SOF.IA"
+                    image={ShowcaseSofia}
+                    deployment="https://sofia-feedback.up.railway.app/">
+                    SOF.IA is an intelligent chatbot designed to answer frequently asked questions about university life. 
+                    Utilizing NLP and ML techniques, it detects user intents to provide relevant and timely responses. 
+                </Project>
+            </Showcase>
+
+        </PortfolioLayout>
+        
+        <ContactLayout>
+            Feel free to get in touch with me. 
+            I am always open to discuss new projects 
+            or opportunities to be part of your visions
+        </ContactLayout>
+    </main>
+    
+    <Footer />
+</MainLayout>

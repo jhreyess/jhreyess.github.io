@@ -1,0 +1,46 @@
+---
+const { title, id } = Astro.props
+---
+
+<section id={id}>
+    <div class="content reveal reveal-up">
+        <div class="wrapper linear-flow">
+            <h4>{title}</h4>
+            <div class="flex">
+                <div class="start"><slot name="start-side"/></div>
+                <div class="end"><slot name="end-side"/></div>
+            </div>
+            <slot name="bottom-side" />
+        </div>
+    </div>
+</section>
+
+<style>
+    section {
+        background-color: var(--colorSecondary);
+    }
+
+    .flex {
+        overflow: hidden;
+    }
+
+    .start {
+        float: left;
+        width: 45%;
+    }
+
+    .end {
+        float: right;
+        width: 45%;
+    }
+
+    @media screen and (max-width: 728px) {
+        .start, .end {
+            float: none;
+            width: auto;
+        }
+        .end {
+            padding-top: 1em;
+        }
+    }
+</style>

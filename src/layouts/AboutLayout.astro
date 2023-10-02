@@ -1,0 +1,43 @@
+---
+import FlexSection from "../components/FlexSectionLayout.astro";
+import Chevron from "../components/icons/Chevron.astro";
+const { skills } = Astro.props;
+---
+<FlexSection id="about" title="ABOUT ME">
+    <p slot="start-side"><slot/></p>
+    <div slot="end-side" class="linear-flow">
+        <p>Here are some technologies I've been working with:</p>
+        <ul>
+            {skills.map(item => (
+                <li>{item}</li>
+            ))}
+        </ul>
+    </div>
+    <h5 slot="bottom-side" class="clear"><a href="cv.pdf" target="_blank">DOWNLOAD CURRICULUM VITAE <Chevron/></a></h5>
+</FlexSection> 
+
+<style>
+    a {
+        text-decoration: none;
+        color: inherit;
+    }
+
+    a:hover{
+        text-decoration: underline;
+    }
+
+    ul {
+        display: grid;
+        grid-template-columns: minmax(100px, 200px) minmax(100px, 200px);
+    }
+
+    ul li { 
+        margin-bottom: 1em;
+    }
+
+    ul li::before {
+        content: '</>';
+        margin-right: 0.5em;
+        color: var(--colorPrimary);
+    }
+</style>

@@ -1,0 +1,127 @@
+---
+import Navigation from "../components/Navigation.astro";
+import Pattern from "../components/icons/Pattern.astro";
+import profile from "../assets/Profile.jpg";
+
+import { Image } from "astro:assets";
+
+const { name, job, social_linkedin, social_github, social_instagram, social_facebook } = Astro.props
+---
+<section>
+    <Navigation 
+        linkedin={social_linkedin}
+        github={social_github}
+        instagram={social_instagram}
+        facebook={social_facebook}
+    />
+    <div class="data reveal reveal-right">
+        <div class="img-wrapper">
+            <Image src={profile} alt="Josue's Picture" />
+            <Pattern />
+        </div>
+        <div class="hero-text">
+            <p>Hi there!, I am</p>
+            <h1>{name}</h1>
+            <h2>{job}</h2>
+        </div>
+    </div>
+</section>
+
+<style>
+    section {
+        min-height: 100vh;
+    }
+
+    .hero-text h1, .hero-text h2 { 
+        font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+        font-weight: normal;
+        margin: 0;
+    }
+    .hero-text p {
+        margin: 2em 0 1em 0;
+    }
+    .hero-text h1 {
+        font-size: 3em;
+    }
+    .hero-text h2{
+        font-size: 1.75em;
+    }
+
+    .data {
+        margin-top:2em;
+        padding-left: 5em;
+        display: inline-block;
+        position: relative;
+    }
+
+    .img-wrapper {
+        position: relative;
+        width: 15em;
+        height: 15em;
+    }
+
+    .img-wrapper::before {
+        content: "";
+        position: absolute;
+        left: -5em;
+        top: -1.5em;
+        height: 14em;
+        width: 18em;
+        background-color: var(--colorPrimary);
+        z-index: -2;
+    }
+
+    .img-wrapper :global(svg) {
+        position: absolute;
+        right: -5em;
+        top: -3em;
+        z-index: -1;
+    }
+
+    .img-wrapper > img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    @media screen and (max-width: 768px) {
+        .data {
+            padding-left: 2.5em;
+        }
+    }
+
+    @media screen and (max-width: 480px) {
+        .data {
+            padding: 0;
+            display: block;
+        }
+
+        .hero-text {
+            text-align: center;
+            font-size: 0.6em;
+        }
+
+        .img-wrapper::before {
+            content: none;
+        }
+
+        .img-wrapper {
+            width: 10em;
+            height: 10em;
+            margin: 0 auto;
+        }
+
+        .img-wrapper > img{
+            border-radius: 50%;
+            border: 5px solid var(--colorSecondary);
+            box-sizing: border-box;
+        }
+
+        .img-wrapper :global(svg) {
+            right: 0;
+            left: 0;
+            top: 24em;
+            z-index: -1;
+        }
+    }
+</style>

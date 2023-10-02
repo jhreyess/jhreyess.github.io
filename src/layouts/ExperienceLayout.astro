@@ -1,0 +1,25 @@
+---
+import Section from "../components/Section.astro";
+---
+<Section id="jobs" title="EXPERIENCE" subtitle="Some Places Where I've Worked">
+    <div class="linear-flow">
+        <slot/>
+    </div>
+</Section>
+
+<style>
+    div {
+        position: relative;
+    }
+
+    div::before {
+        content: "";
+        position: absolute;
+        width: 10px;
+        height: 100%;
+        left: 19px;
+        z-index: -1;
+        border-radius: 16px;
+        background-color: var(--colorSecondary);
+    }
+</style>

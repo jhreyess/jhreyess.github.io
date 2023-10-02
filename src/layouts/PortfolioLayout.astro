@@ -1,0 +1,15 @@
+---
+import Section from "../components/Section.astro"
+import Tab from "../components/Tab.astro";
+
+const { tabs } = Astro.props; 
+---
+
+<Section id="work" title="PORTFOLIO" subtitle="Things I've built">
+    <ul>
+        {tabs.map(tab => (
+            <Tab group={tab.key} checked={tab.checked}>{tab.value}</Tab>
+        ))}
+    </ul>
+    <slot/>
+</Section>

@@ -1,0 +1,183 @@
+---
+import Logo from './icons/Logo.astro';
+import Hamburger from './icons/Hamburger.astro';
+import CloseButton from './icons/Close.astro';
+
+import Linkedin from '../components/icons/linkedin.astro';
+import Github from '../components/icons/github.astro';
+import Instagram from '../components/icons/instagram.astro';
+import Facebook from '../components/icons/facebook.astro';
+
+import Toggler from './Toggler.astro';
+
+const { linkedin, github, instagram, facebook } = Astro.props;
+---
+
+<header class="reveal reveal-down">
+    <Logo/>
+    <div>
+        <Toggler />
+        <nav>
+            <ul>
+                <li><CloseButton id="closeNavBtn"/></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#jobs">Experience</a></li>
+                <li><a href="#work">Projects</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li class="social reveal reveal-up">
+                    <ul>
+                        {linkedin && <li><Linkedin to={linkedin} /></li>}
+                        {github && <li><Github to={github} /></li>}
+                        {instagram && <li><Instagram to={instagram}/></li>}
+                        {facebook && <li><Facebook to={facebook}/></li>}
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+        <Hamburger id="openNavBtn"/>
+    </div>
+</header>
+
+<style>
+    header { 
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 5em;
+        height: 6.5em;
+        position: relative;
+    }
+
+    nav {
+        display: inline-block;
+    }
+
+    nav > ul > li {
+        display: inline-block;
+        margin: 0 1em;
+        vertical-align: middle
+    }
+
+    nav > ul > li.social {
+        position: absolute;
+        right: 5em;
+        top: 100%;
+        margin: 0;
+    }
+
+    nav > ul > li:first-child {
+        display: none;
+    }
+
+    nav > ul > li:nth-last-child(2){
+        margin-right: 0;
+    }
+
+    nav > ul > li a {
+        text-decoration: none;
+        color: inherit;
+        position: relative;
+    }
+
+    nav > ul > li a::after {
+        content: "";
+        position: absolute;
+        left: 100%;
+        right: 0;
+        bottom: -5px;
+        height: 1px;
+        background-color: var(--colorText);
+        transition: all 200ms;
+    }
+
+    nav > ul > li a:hover::after {
+        left: 0;
+    }
+    
+    .social > ul {
+        display: inline-flex;
+        flex-direction: column;
+        gap: 1.25em;
+        align-items: center;
+        margin: 0;
+    }
+
+    .social > ul::before {
+        content: "";
+        display: block;
+        width: 2px;
+        height: 80px;
+        background-color: var(--colorPrimary);
+    }
+
+    @media screen and (max-width: 768px) {
+        header {
+            padding: 0 2.5em;
+        }
+
+        nav {
+            position: fixed;
+            right: 0;
+            bottom: 0;
+            top: 0;
+            background-color: var(--colorSecondary);
+            width: 85vw;
+            z-index: 1;
+            transform: translateX(100%);
+            transition: transform 200ms ease-in;
+        }
+        nav.active {
+            transform: translateX(0);
+        }
+        nav > ul {
+            margin-top: 1em;
+        }
+        nav > ul > li {
+            display: block;
+        }
+
+        nav > ul > li:first-child {
+            display: inherit;
+        }
+
+        nav > ul > li > a {
+            display: block;
+            padding: 2em;
+        }
+
+        nav > ul > li.social {
+            top: unset;
+            right: 0;
+            left: 0;
+            bottom: 1em;
+        }
+
+        .social > ul {
+            flex-direction: row;
+        }
+        
+    }
+</style>
+
+<script>
+    const body = document.querySelector('body');
+    const navbar = document.querySelector("nav");
+
+    document.getElementById("openNavBtn")?.addEventListener('click', () => {
+        navbar?.classList.add('active');
+        body?.classList.add('no-scroll');
+    });
+
+    document.getElementById("closeNavBtn")?.addEventListener('click', () => {
+        navbar?.classList.remove('active');
+        body?.classList.remove('no-scroll');
+    });
+
+    window.addEventListener('resize', () => {
+        const screenWidth = window.innerWidth;
+
+        if (screenWidth > 768) {
+            body?.classList.remove('no-scroll');
+        }
+    });
+</script>

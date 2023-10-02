@@ -1,0 +1,36 @@
+---
+import Logo from "./icons/Logo.astro";
+---
+<footer>
+    <div class="content">
+        <Logo />
+        <p>JOSUÉ REYES</p>
+    </div>
+</footer>
+
+<style>
+    .content {
+        padding: 2em 0;
+        text-align: center;
+    }
+
+    footer::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        right: 0;
+        margin: 0 auto;
+        max-width: 20em;
+        height: 1px;
+        background-color: var(--colorText);
+    }
+
+    footer :global(svg){
+        vertical-align: middle;
+    }
+
+    footer p {
+        display: inline;
+        margin-left: 0.5em;
+    }
+</style>

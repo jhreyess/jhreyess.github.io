@@ -1,0 +1,20 @@
+---
+const { forGroup, isDefault } = Astro.props;
+---
+<article id={forGroup + "-group"} 
+    class:list={["tab-group", {"tab-open": isDefault}]}>
+    <slot/>
+</article>
+
+<style>
+    article {
+        display: none;
+    }
+
+    article.tab-open {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 1em;
+    }
+</style>
