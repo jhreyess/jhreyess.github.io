@@ -1,0 +1,53 @@
+---
+const { group, checked } = Astro.props;
+---
+<li>
+    <input 
+        class="tab-selector"
+        type="radio" 
+        id={group} 
+        name="selector" 
+        {checked} 
+    />
+    <label for={group}><slot/></label>
+</li>
+
+<style>
+    li { 
+        color: var(--colorTabs);
+        display: inline-block;
+        margin: 0 1em;
+        padding: 0.5em 0;
+    }
+
+    label {
+        transition: color 200ms ease;
+    }
+
+    label:hover { 
+        color: var(--colorParagraph);
+        cursor: pointer;
+    }
+
+    input[type="radio"] {
+        display: none;
+    }
+
+    input[type="radio"]:checked+label {
+        color: var(--colorPrimary);
+    }
+</style>
+
+<script>
+    const radios = document.querySelectorAll(".tab-selector");
+    radios.forEach(radioBtn => {
+        radioBtn.addEventListener('click', (e) => {
+            const toClose = document.getElementsByClassName("tab-open");
+            for(var i=0; i<toClose.length; i++) {
+                toClose[i].classList.remove('tab-open');
+            }            
+            const toOpen = document.getElementById(radioBtn.id + "-group");
+            toOpen?.classList.toggle('tab-open');
+        })
+    })
+</script>

@@ -1,0 +1,13 @@
+---
+const { title, subtitle, id } = Astro.props;
+const isNoWrapSection = id === 'work';
+---
+<section id={id}>
+    <div class="content reveal reveal-up">
+        <div class:list={[`${isNoWrapSection ? '' : 'wrapper'}`, "center", "linear-flow"]}>
+            <h4>{title}</h4>
+            <h2>{subtitle}</h2>
+            <slot/>
+        </div>
+    </div>
+</section>

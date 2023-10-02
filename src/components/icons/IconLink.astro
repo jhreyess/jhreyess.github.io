@@ -1,0 +1,13 @@
+---
+const { to, title } = Astro.props;
+---
+<a href={to} title={title} target="_blank">
+    <slot/>
+</a>
+
+<style>
+    a {
+        display: inline-block;
+        color: var(--colorPrimary);
+    }
+</style>

@@ -1,0 +1,28 @@
+---
+const { id } = Astro.props;
+---
+<div id={id} class="close"></div>
+  
+<style>
+  .close {
+    position: relative;
+    width: 32px;
+    height: 32px;
+    margin-left: auto;
+  }
+  .close:before, .close:after {
+    content: "";
+    position: absolute;
+    left: 15px;
+    height: 1.5em;
+    width: 2px;
+    background-color: var(--colorText);
+  }
+  .close:before {
+    transform: rotate(45deg);
+  }
+  .close:after {
+    transform: rotate(-45deg);
+  }
+</style>
+  

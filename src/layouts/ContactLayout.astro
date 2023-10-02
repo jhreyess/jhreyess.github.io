@@ -1,0 +1,15 @@
+---
+import Section from "../components/Section.astro";
+import Button from "../components/Button.astro";
+---
+<Section id="contact" title="CONTACT" subtitle="Get in Touch">
+    <p><slot/></p>
+    <Button url="mailto:contact.jhrs@gmail.com?subject=Hi there!">Leave a message</Button>
+</Section>
+
+<style>
+    p {
+        width: 50%;
+        margin: 0 auto;
+    }
+</style>
