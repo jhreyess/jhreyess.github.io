@@ -1,7 +1,6 @@
 ---
 import Navigation from "../components/Navigation.astro";
 import Pattern from "../components/icons/Pattern.astro";
-import profile from "../assets/Profile.jpg";
 
 import { Image } from "astro:assets";
 
@@ -16,7 +15,7 @@ const { name, job, social_linkedin, social_github, social_instagram, social_face
     />
     <div class="data reveal reveal-right">
         <div class="img-wrapper">
-            <Image src={profile} alt="Josue's Picture" />
+            <Image width=300 height=300 src='https://avatars.githubusercontent.com/u/87925818' alt="Josue's Picture" />
             <Pattern />
         </div>
         <div class="hero-text">
